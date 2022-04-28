@@ -1,0 +1,53 @@
+
+body{
+    background: white;
+}
+
+.logo{
+    margin-top: 25px;
+    margin-left: 80px;
+}
+
+.logo-name{
+    color: #D94E5F;
+    font-family: sans-serif;
+    margin-left: 190px;
+    margin-top: -50px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.division-line{
+    opacity: 0.5;
+    font-size: 65px;
+    margin-top: 48px;
+}
+
+.heading{
+    margin-top: 273px;
+    color: #2933A1;
+    margin-left: 155px;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.input{
+    height: 44px;
+    width: 600px;
+    margin-left: 105px;
+    background-color: #ECEBF6;
+    border:none;
+    text-align: center;
+    font-size: 13px;
+    color: black;
+    border-radius: 8px;
+}
+
+.produce-button{
+    height: 43px;
+    width: 139px;
+    background-color: #D94E5F;
+    border-color: #D94E5F;
+    color: white;
+    font-size: 14px;border-radius: 30px;
+}

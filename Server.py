@@ -1,11 +1,7 @@
-import os
-import threading
-import base64
-import requests
 import sqlite3
 
-from flask import request, Response, Flask, render_template, logging, make_response, jsonify, send_from_directory
-from werkzeug.utils import redirect, secure_filename
+from flask import request, Flask, render_template
+from werkzeug.utils import redirect
 
 
 from decodeurl import decode_url
@@ -15,12 +11,17 @@ from last_urlid import last_url
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+HOST = "127.0.0.1"
+PORT = 8010
 
+@app.route('/')
+def homeToRedirect():
+    return redirect("/urlshortner")
 
 @app.route('/<some_url>')
 def redirect2(some_url):
     print(some_url)
-    redir="http://127.0.0.1:8010/"
+    redir="http://" + HOST + ":" + str(PORT) + "/"
     if(some_url[:3]=="JAz"):
         print(some_url)
         url = some_url
@@ -58,6 +59,9 @@ def url_shorter():
     value_1 = last.lasturl()
     value_2=request.args.get("url_short")
 
+    if(value_2 == ""):
+        return redirect("/urlshortner")
+
 
     con = sqlite3.connect('urldatabase.db')
     print("successfully created database")
@@ -72,11 +76,11 @@ def url_shorter():
 
     encode=encode_url()
     enc=encode.encode()
-    host="http://127.0.0.1:8010/"
+    host="http://" + HOST + ":" + str(PORT) + "/"
     value_3=host+enc
 
     return render_template("url_shorter1.html",value_3=value_3)
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1',port=8010,debug=True)
+    app.run(host=HOST,port=PORT,debug=True)
